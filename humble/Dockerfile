@@ -124,3 +124,22 @@ ENTRYPOINT [ "/bin/bash", "-c", "/entrypoint.sh" ]
 ENV USER ubuntu
 ENV PASSWD ubuntu
 
+# ============================
+# added by tylee, after this line
+
+RUN apt update && apt install -y \ 
+    ros-$ROS_DISTRO-plotjuggler-ros \
+    vim
+
+RUN mkdir -p /colcon_ws/src \
+    && mkdir /installer
+  
+WORKDIR /installer
+COPY set-vi.sh .
+RUN sh set-vi.sh
+RUN rm -rf /installer
+
+WORKDIR /catkin_ws
+
+# create share directory
+RUN mkdir -p /root/share
