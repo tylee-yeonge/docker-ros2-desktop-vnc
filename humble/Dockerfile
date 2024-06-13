@@ -139,7 +139,7 @@ COPY set-vi.sh .
 RUN sh set-vi.sh
 RUN rm -rf /installer
 
-WORKDIR /catkin_ws
-
 # create share directory
 RUN mkdir -p /root/share
+
+WORKDIR /colcon_ws
